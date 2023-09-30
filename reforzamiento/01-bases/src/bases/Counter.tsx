@@ -1,7 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-export const Counter = () => {
+interface props {
+  initialCounter: number;
+}
+
+export const Counter = ({initialCounter}:props) => {
+
+  const [counter, setCounter] = useState(initialCounter);
+
+    const handleClick = () => {
+      setCounter( prev => prev + 1 );
+    }
+
   return (
-    <div>Counter</div>
+    <>
+      <h1>Counter:{ counter }</h1>
+      <hr />
+      <button
+        onClick={ handleClick }
+      >
+        +1
+      </button>
+    </>
   )
 }
