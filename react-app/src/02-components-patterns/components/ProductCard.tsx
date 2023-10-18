@@ -1,7 +1,7 @@
 import styles from '../styles/styles.module.css'
 import { useProduct } from '../hooks/useProduct';
 import { ReactElement, createContext } from 'react';
-import { Product, ProductContextProps, onChangeArgs } from '../interfaces/interfaces';
+import { InitialValues, Product, ProductCartHandlers, ProductContextProps, onChangeArgs } from '../interfaces/interfaces';
 
 
 
@@ -10,11 +10,13 @@ const { Provider } = ProductContext;
 
 export interface Props {
     product: Product;
-    children?: ReactElement | ReactElement[];
+    //children?: ReactElement | ReactElement[];
+    children: (args: ProductCartHandlers) => JSX.Element,
     className?: string;
     style?: React.CSSProperties;
     onChange?: ( args: onChangeArgs ) => void;
     value?: number
+    initialValues?: InitialValues
 }
 
 interface ProductButtonsProps {
@@ -22,20 +24,33 @@ interface ProductButtonsProps {
     increaseBy: (value:number) =>void;
 }
 
-export const ProductCard = ({ children, product, className, style, onChange, value }:Props) => {
+
+export const ProductCard = ({ children, product, className, style, onChange, value, initialValues }:Props) => {
     
-    const {counter, increaseBy}  = useProduct( {onChange, product, value} );
+    const {counter, increaseBy, maxCount, isMaxCountReached, reset }  
+        = useProduct( {onChange, product, value, initialValues} );
 
   return (
     <Provider value={{
         counter,
         increaseBy,
-        product
+        product,
+        maxCount              
     }}>
         <div className={ `${styles.productCard} ${className}` }
             style={ style }
         >
-            { children }
+            { 
+                children({
+                    count: counter,
+                    isMaxCountReached,
+                    maxCount: initialValues?.maxCount,
+                    product,
+
+                    increaseBy,
+                    reset
+                }) 
+            }
             {/* <ProductImage img={product.img}/>
 
             <ProductTitle title={product.title}/>
