@@ -6,7 +6,8 @@ import {
   } from 'react-router-dom';
   
   import logo from '../logo.svg';
-//import { ShoppingPage } from '../02-components-patterns/pages/ShoppingPage';
+  //import { ShoppingPage } from '../02-components-patterns/pages/ShoppingPage';
+import { FormikAbstractation, FormikBasicPage, FormikComponents,FormikYupPage} from '../03-forms/pages'
 import { RegisterPage } from '../03-forms/pages/RegisterPage';
   
   export const Navigation = () => {
@@ -20,10 +21,16 @@ import { RegisterPage } from '../03-forms/pages/RegisterPage';
                 <NavLink to="/register" className="nav-active" >Register Page</NavLink>
               </li>
               <li>
-                <NavLink to="/about" className="nav-active" >About</NavLink>
+                <NavLink to="/formik-basic" className="nav-active" >Formik Basic</NavLink>
               </li>
               <li>
-                <NavLink to="/users" className="nav-active" >Users</NavLink>
+                <NavLink to="/formik-yup" className="nav-active" >Formik Yup</NavLink>
+              </li>
+              <li>
+                <NavLink to="/formik-components" className="nav-active" >Formik Components</NavLink>
+              </li>
+              <li>
+                <NavLink to="/formik-abstractation" className="nav-active" >Formik Abstractacion</NavLink>
               </li>
             </ul>
           </nav>
@@ -31,8 +38,10 @@ import { RegisterPage } from '../03-forms/pages/RegisterPage';
           {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
           <Routes>
-            <Route path="/about" element={<h1>About</h1>}/>
-            <Route path="/users" />
+            <Route path="/formik-yup" element={<FormikYupPage/>}/>
+            <Route path="/formik-basic" element={<FormikBasicPage/>} />
+            <Route path="/formik-components" element={<FormikComponents/>} />
+            <Route path="/formik-abstractation" element={<FormikAbstractation/>} />
             <Route path="/register" element={<RegisterPage/>} />
           </Routes>
         </div>

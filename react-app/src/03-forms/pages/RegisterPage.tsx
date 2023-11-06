@@ -3,7 +3,7 @@ import '../styles/styles.css'
 import { useForm } from '../hooks/useForm'
 
 export const RegisterPage = () => {
-
+    
     const { 
         formData, 
         onChange, 
