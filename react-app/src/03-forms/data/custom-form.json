@@ -1,0 +1,49 @@
+[
+    {
+        "type": "text",
+        "name": "firstName",
+        "placeholder": "Fernando",
+        "label": "First Name",
+        "value": "Carlos",
+        "validations": [
+            {
+                "type":"required"
+            },
+            {
+                "type":"minLength",
+                "value": 5
+            }
+            
+        ]
+    },    
+    {
+        "type": "text",
+        "name": "lastName",
+        "placeholder": "Herrera",
+        "label": "Last Name",
+        "value": ""
+    },    
+    {
+        "type": "email",
+        "name": "email",
+        "placeholder": "tunombre@google.com",
+        "label": "Email",
+        "value": "",
+        "validations":[
+            {
+                "type":"required"
+            },
+            {
+                "type":"email"
+            }
+        ]
+    },    
+    {
+        "type": "select",
+        "name": "favoriteGame",        
+        "label": "Favorite Game",
+        "value": "",
+        "options": ["Super Smash", "Metal Gear", "Resident Evil"]
+    }
+    
+]
